@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--360浏览器优先以webkit内核解析-->
+
+
+    <title>H+ 后台主题UI框架 - 主页示例</title>
+
+    <link rel="shortcut icon" href="favicon.ico"> <link href="css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="css/font-awesome.css?v=4.4.0" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/plugins/bootstrap-table/bootstrap-table.min.css">
+    <link href="css/animate.css" rel="stylesheet">
+    <link href="css/style.css?v=4.1.0" rel="stylesheet">
+    
+
+</head>
+
+<body class="gray-bg">
+    
+
+    <div class="col-sm-12">
+                        <!-- Example Events -->
+                        <div class="example-wrap" id="exampleTableEvent">
+                            <!-- <h4 class="example-title">事件</h4> -->
+                            <div class="example">
+                                <!-- <div class="alert alert-success" id="examplebtTableEventsResult" role="alert">
+                                    事件结果
+                                </div> -->
+                                <div class="btn-group hidden-xs" id="exampleTableEventsToolbar" role="group">
+                                    <button type="button" class="btn btn-outline btn-default" id="editUser" title="编辑" data-target="#myModal1">
+                                        <i class="glyphicon glyphicon-edit" aria-hidden="true"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-outline btn-default" id="delete" title="删除" >
+                                        <i class="glyphicon glyphicon-trash" aria-hidden="true"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-outline btn-default" id="output" title="导出" >
+                                        <i class="glyphicon glyphicon-log-out" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                                <table style="table-layout:fixed !important;" id="prejectsTableEvents" data-height="400" data-mobile-responsive="true">
+                                    <thead>
+                                        <tr>
+                                            <th data-field="state" data-checkbox="false"></th>
+                                            <th data-field="id" name="id" id="id">ID</th>
+                                            <th data-field="companyTitle" name="companyTitle" id="companyTitle">企业名称</th>
+                                            <th data-field="registeredCapital" name="registeredCapital" id="registeredCapital">注册资本</th>
+                                            <th data-field="founder" name="founder" id="founder">创始人</th>
+                                            <th data-field="companySize" name="companySize" id="companySize">企业规模</th>
+                                            <th data-field="address" name="address" id="address">企业地址</th>
+                                            <th data-field="type" name="type" id="type">经营范围</th>
+                                            <th data-field="qualityRating" name="qualityRating" id="qualityRating">信用等级</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                        </div>
+                        <!-- End Example Events -->
+                    </div>
+
+                             <div class="modal inmodal fade" id="myModal1" tabindex="-1" role="dialog"  aria-hidden="true">
+                                <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                            <h4 class="modal-title">编辑部门信息</h4>
+                                            <small class="font-bold">您可以在此页面编辑部门信息
+                                        </div>
+                                        <div class="modal-body">
+                                            <form class="m-t m-t-2" role="form" id="submitNewUser">
+                                                <div class="form-group" >
+                                                        <input type="text"  id="companyTitle1" name="companyTitle1" class="form-control" placeholder="请输入部门名称" required="">
+                                                </div>
+                                                    <div class="form-group" >
+                                                        <input type="text"  id="registeredCapital1" name="registeredCapital" class="form-control" placeholder="联系方式" required="">
+                                                    </div>
+                                                    <div class="btn-group form-group pull-left">
+                                                        <label for="name">部门级别</label>
+                                                        <select class="form-control" name="qualityRating" id="qualityRating1">
+                                                            <option>市级</option>
+                                                            <option>县级</option>
+                                                            <option>街道</option>
+                                                            <option>乡镇</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group" >
+                                                        <input type="text"  id="founder1" name="founder" class="form-control" placeholder="请输入负责人人姓名" required="">
+                                                    </div>
+                                                    <div class="form-group" >
+                                                        <input type="text"  id="companySize1" name="companySize" class="form-control" placeholder="请输入部门人数" required="">
+                                                    </div>
+                                                    <div class="form-group" >
+                                                        <input type="text"  id="address1" name="address" class="form-control" placeholder="请输入部门地址" required="">
+                                                    </div>
+                                                    <div class="form-group" >
+                                                        <input type="text"  id="type1" name="type" class="form-control" placeholder="请输入部门类别（默认为政府机关）" required="">
+                                                    </div>
+                                                    <div class="form-group" >
+                                                        <textarea id="summary1" name="summary" required="" placeholder="请输入部门简介"></textarea>
+                                                    </div>
+                                                </form>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-white" data-dismiss="modal">关闭</button>
+                                            <button type="button" class="btn btn-primary" id="editsubmit"  data-dismiss="modal">提交</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> 
+
+
+                            
+
+                            
+    
+
+    <!-- 全局js -->
+    <script src="js/jquery.min.js?v=2.1.4"></script>
+    <script src="js/bootstrap.min.js?v=3.3.6"></script>
+    <script src="js/plugins/layer/layer.min.js"></script>
+
+    <!-- Bootstrap table -->
+    <script src="js/plugins/bootstrap-table/bootstrap-table.min.js"></script>
+    <!-- <script src="js/plugins/bootstrap-table/bootstrap-table-mobile.min.js"></script> -->
+    <script src="js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
+    <script type="text/javascript" src="./js/jquery-vilidate.js"></script>
+
+    <!-- layerDate plugin javascript -->
+    <script src="js/plugins/layer/laydate/laydate.js"></script>
+    <script type="text/javascript" src="js/jquery.table2excel.js"></script>
+
+    <!-- Peity -->
+    <!-- <script src="js/demo/bootstrap-table-demo.js"></script> -->
+    <!-- 自定义js -->
+    <script src="js/content.js"></script>
+    <script src="js/comm.js"></script>
+    <!-- 欢迎信息 -->
+    <script src="js/welcome.js"></script>
+    <script type="text/javascript">
+    $().ready(function() {
+
+        var workspace = sessionStorage.getItem('workspace');
+        var type = sessionStorage.getItem('type');
+        if (type == "0") {
+            var url = "http://localhost:5000/partment/companymanage";
+        }else{
+            var url = "http://localhost:5000/partment/companymanage?workspace="+workspace;
+        }
+        
+         $("#prejectsTableEvents").bootstrapTable({
+            method: 'get', //是否显示行间隔色
+            striped: true, //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
+            cache: false, //是否显示分页（*）
+            pagination: true, //是否启用排序
+            sortName:'callBackRate',
+            sortable: true, //排序方式
+            sortOrder: "desc",//初始化加载第一页，默认第一页
+            /*pageList: [10, 15, 25, 50, 100],*/
+            //这个接口需要处理bootstrap table传递的固定参数,并返回特定格式的json数据
+            url: url,
+            cache:false,//缓存
+            pagination:true,//分页
+            sidePagination:'client',//指定在前端客户端分页
+            pageNumber:1,//页号
+            pageSize:10,//页面数据条数
+            pageList:[10,20,30,40,50],//分页列表
+            toolbar:'#toolbar',//工具栏
+            showColumns:true,//显示选择列
+            showRefresh:true,//显示刷新按钮
+            showToggle:true,//显示切换视图：列表和详情视图切换
+            search:true,//显示搜索框
+            columns:[
+                {checkbox:true},
+                {field: '',align: 'center',
+                    formatter: function (value, row, index) {
+                                return index + 1;
+                    },title:'id',width:"10%"},
+                {field:'companyTitle',title:'部门名称',width:"8%"},
+                {field:'registeredCapital',title:"联系方式",width:"8%"},
+                {field:'founder',title:'负责人',width:"8%"},
+                {field:'companySize',title:'部门规模（人）',width:"8%"},
+                {field:'address',title:'部门地址',width:"8%"},
+                {field:'type',title:'类别',width:"10%"},
+                {field:'qualityRating',title:'部门级别',align:'center',width:"8%",
+                    formatter:function(value,row,index){
+                        if(value == "1"){
+                            return '市级';
+                        }else if(value == "2"){
+                            return '县级';
+                        }else if(value == "3"){
+                            return '街道';
+                        }else if(value == "4"){
+                            return '乡镇';
+                        }else{
+                            return '-';
+                        }
+                    }}
+            ],
+            queryParams: function (params) {
+                    return {
+                        inDateFrom: $('#start').val(),
+            inDateTo: $('#end').val(),
+            type: $("#viewType").attr("viewType")
+                    };
+            },
+            strictSearch: true, //Enable the strict search.
+            responseHandler: function(data){
+                    return data.rows;
+            }
+        });
+
+         $("#delete").click(function(){
+            var _id = $(".selected").attr("id");
+            //var id = sessionStorage.getItem('_id');
+            //console.log(_id);
+            if ( _id == "" || _id == undefined) {
+                fail_prompt("请选择要删除的企业！");
+            }else{
+                console.log(_id)
+                $.ajax({
+                url: "http://localhost:5000/partment/deletecompanyInfo",
+                type: "post",
+                data: {
+                    _id:_id
+                },
+                success: function (data) {
+                    //alert(data.msg);
+                    //重新加载记录
+                    //重新加载数据
+                    $("#prejectsTableEvents").bootstrapTable('refresh', {url: url});
+                }
+                });
+                if (data.errorCode == "200") {
+                    success_prompt("删除成功！");
+                }else{
+                    fail_prompt("删除失败！");
+                }
+
+                
+            }
+            
+         })
+         
+
+
+        $("#editUser").click(function(){
+            var _id = $(".selected").attr("id");
+            console.log(_id);
+            if (_id == undefined) {
+                fail_prompt("请选择要编辑的企业！");
+                $('#myModal1').modal({
+                    show: false,
+                    backdrop:'static'
+                })
+            }else{
+                $.ajax({
+                url: "http://localhost:5000/partment/findcompanyInfo",
+                type: "get",
+                data: {
+                    _id:_id
+                },
+                success: function (data) {
+                    var qualityRating  = data.data[0].qualityRating;
+                    if(qualityRating == "1"){
+                            qualityRating = '市级';
+                        }else if(qualityRating == "2"){
+                           qualityRating =  '县级';
+                        }else if(qualityRating ==  "3"){
+                           qualityRating =  '街道';
+                        }else if(qualityRating ==  "4"){
+                           qualityRating =  '乡镇';
+                        }else{
+                            qualityRating =  '-';
+                        }
+                        
+                    console.log(qualityRating);
+                    //console.log(type);
+                    $("#companyTitle1").val(data.data[0].companyTitle);
+                    $("#registeredCapital1").val(data.data[0].registeredCapital);
+                    $("#founder1").val(data.data[0].founder);
+                    $("#companySize1").val(data.data[0].companySize);
+                    $("#address1").val(data.data[0].address);
+                    $("#type1").val(data.data[0].type);
+                    $("#qualityRating1").val(qualityRating);
+                    $("#summary1").text(data.data[0].summary);
+                    $('#myModal1').modal({
+                    show: true,
+                    backdrop:'static'
+                    })
+                }
+                });
+            }
+
+            $("#editsubmit").click(function(){
+            //var type = sessionStorage.getItem('type');
+            //console.log("hwogih");
+            var companyTitle = $("#companyTitle1").val();
+            var registeredCapital = $("#registeredCapital1").val();
+            var founder = $("#founder1").val();
+            var companySize = $("#companySize1").val();
+            var address = $("#address1").val();
+            var type = $("#type1").val();
+            var qualityRating = $("#qualityRating1").val();
+            var summary = $("#summary1").val();
+            var _id1 = $(".selected").attr("id");
+            if (qualityRating == "市级") {
+                qualityRating = "1"
+            }else if (qualityRating == "县级") {
+                qualityRating = "2"
+            }else if (qualityRating == "街道") {
+                qualityRating = "3"
+            }else if (qualityRating == "乡镇") {
+                qualityRating = "4"
+            }
+
+            var data = {
+                companyTitle:companyTitle,
+                registeredCapital:registeredCapital,
+                founder:founder,
+                companySize:companySize,
+                address:address,
+                type:type,
+                qualityRating:qualityRating,
+                summary:summary,
+                _id:_id1
+                }
+                console.log(data);
+                $.ajax({
+                    url:"http://localhost:5000/partment/updateCompanyInfo",
+                    method:"post",
+                    data:data,
+                    success:function(result){
+                    //console.log(result);
+                    if (result.errorCode == "200") {
+                        success_prompt("修改成功！");
+                        $("#prejectsTableEvents").bootstrapTable('refresh', {url: url});
+                    }else if (result.errorCode == "404" || result.errorCode == "406") {
+                        fail_prompt("修改失败，请重新编辑！")
+                    }else if(result.errorCode == "405"){
+                        fail_prompt("修改失败，请重新编辑！")
+                    }
+                }
+                });
+            
+            })
+             
+        
+            });
+
+
+        
+     })
+
+$("#output").click(function(filename){
+    $("#prejectsTableEvents").table2excel({
+        exclude: ".noExl",//class="noExl"的列不导出
+        name: "Excel Document Name",
+        filename: "表格数据",//文件名称
+        fileext: ".xlsx",//文件后缀名
+        exclude_img: true,//导出图片
+        exclude_links: true,//导出超链接
+        exclude_inputs: true//导出输入框内容
+    });
+})
+
+    </script>
+</body>
+
+</html>

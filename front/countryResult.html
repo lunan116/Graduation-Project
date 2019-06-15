@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--360浏览器优先以webkit内核解析-->
+
+
+    <title>H+ 后台主题UI框架 - 主页示例</title>
+
+    <link rel="shortcut icon" href="favicon.ico"> <link href="css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="css/font-awesome.css?v=4.4.0" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/plugins/bootstrap-table/bootstrap-table.min.css">
+    <link href="css/animate.css" rel="stylesheet">
+    <link href="css/style.css?v=4.1.0" rel="stylesheet">
+    
+
+</head>
+
+<body class="gray-bg">
+    
+
+    <div class="col-sm-12">
+                        <!-- Example Events -->
+                        <div class="example-wrap" id="exampleTableEvent">
+                            <!-- <h4 class="example-title">事件</h4> -->
+                            <div class="example">
+                                <!-- <div class="alert alert-success" id="examplebtTableEventsResult" role="alert">
+                                    事件结果
+                                </div> -->
+                                <!-- <div class="btn-group hidden-xs" id="exampleTableEventsToolbar" role="group">
+                                    <button type="button" class="btn btn-outline btn-default" title="查询">
+                                        <i class="glyphicon glyphicon-search" aria-hidden="true"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-outline btn-default" title="添加"  data-toggle="modal" data-target="#myModal5">
+                                        <i class="glyphicon glyphicon-plus" aria-hidden="true"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-outline btn-default" id="editUser" title="编辑"   data-target="#myModal1">
+                                        <i class="glyphicon glyphicon-edit" aria-hidden="true"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-outline btn-default" id="delete" title="删除" >
+                                        <i class="glyphicon glyphicon-trash" aria-hidden="true"></i>
+                                    </button>
+                                </div> -->
+                                <table style="table-layout:fixed;" id="exampleTableEvents" data-height="400" data-mobile-responsive="true">
+                                    <thead>
+                                        <tr>
+                                            <!-- <th data-field="state" data-checkbox="false"></th>
+                                            <th data-field="id" name="id" id="id">ID</th>
+                                            <th data-field="count" name="count" id="count">审批完成</th>
+                                            <th data-field="counting" name="counting" id="counting">正在审批</th>
+                                            <th data-field="counted" name="counted" id="counted">未开始审批</th>
+                                            <th data-field="counts" name="counts" id="counts">已取消审批</th>
+                                            <th data-field="result" name="result" id="result">考评结果</th> -->
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                        </div>
+                        <!-- End Example Events -->
+                    </div>
+
+                    
+    
+
+    <!-- 全局js -->
+    <script src="js/jquery.min.js?v=2.1.4"></script>
+    <script src="js/bootstrap.min.js?v=3.3.6"></script>
+    <script src="js/plugins/layer/layer.min.js"></script>
+
+    <!-- Bootstrap table -->
+    <script src="js/plugins/bootstrap-table/bootstrap-table.min.js"></script>
+    <script src="js/plugins/bootstrap-table/bootstrap-table-mobile.min.js"></script>
+    <script src="js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
+    <script type="text/javascript" src="./js/jquery-vilidate.js"></script>
+
+    <!-- Peity -->
+    <!-- <script src="js/demo/bootstrap-table-demo.js"></script> -->
+    <!-- 自定义js -->
+    <script src="js/content.js"></script>
+    <script src="js/comm.js"></script>
+    <!-- 欢迎信息 -->
+    <script src="js/welcome.js"></script>
+    <script type="text/javascript">
+    $().ready(function() {
+        
+        var workspace = sessionStorage.getItem('workspace');
+        var type = sessionStorage.getItem('type');
+        var url = "http://localhost:5000/countryResult?workspace="+workspace;
+        if (type=="0") {
+            url = "http://localhost:5000/countryResult";
+        }else{
+            url = "http://localhost:5000/countryResult?workspace="+workspace;
+        }
+            
+
+         $("#exampleTableEvents").bootstrapTable({
+            method: 'get', //是否显示行间隔色
+            striped: true, //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
+            cache: false, //是否显示分页（*）
+            pagination: true, //是否启用排序
+            sortName:'callBackRate',
+            sortable: true, //排序方式
+            sortOrder: "desc",//初始化加载第一页，默认第一页
+            /*pageList: [10, 15, 25, 50, 100],*/
+            //这个接口需要处理bootstrap table传递的固定参数,并返回特定格式的json数据
+            url: url,
+            cache:false,//缓存
+            pagination:true,//分页
+            sidePagination:'client',//指定在前端客户端分页
+            pageNumber:1,//页号
+            pageSize:10,//页面数据条数
+            pageList:[10,20,30,40,50],//分页列表
+            toolbar:'#toolbar',//工具栏
+            showColumns:true,//显示选择列
+            showRefresh:true,//显示刷新按钮
+            showToggle:true,//显示切换视图：列表和详情视图切换
+            search:true,//显示搜索框
+            columns:[
+            
+                {field: '',align: 'center',
+                    formatter: function (value, row, index) {
+                                return index + 1;
+                    },title:'id',width:"10%"},
+            {field:'count',align: 'center',title:'审批完成'},    
+            {field:'counting',align: 'center',title:'正在审批'},    
+            {field:'counted',align: 'center',title:'未开始审批'},
+            {field:'counts',align: 'center',title:'已取消审批'},
+            {field:'result',align: 'center',title:'考评结果'},
+            ]
+            ,
+            queryParams: function (params) {
+                    return {
+                        inDateFrom: $('#start').val(),
+            inDateTo: $('#end').val(),
+            type: $("#viewType").attr("viewType")
+                    };
+            },
+            strictSearch: true, //Enable the strict search.
+            responseHandler: function(data){
+                    return data.rows;
+            }
+        });
+
+         
+     })
+
+    </script>
+</body>
+
+</html>

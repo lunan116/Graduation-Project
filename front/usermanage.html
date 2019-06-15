@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--360浏览器优先以webkit内核解析-->
+
+
+    <title>H+ 后台主题UI框架 - 主页示例</title>
+
+    <link rel="shortcut icon" href="favicon.ico"> <link href="css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="css/font-awesome.css?v=4.4.0" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/plugins/bootstrap-table/bootstrap-table.min.css">
+    <link href="css/animate.css" rel="stylesheet">
+    <link href="css/style.css?v=4.1.0" rel="stylesheet">
+    
+
+</head>
+
+<body class="gray-bg">
+    
+
+    <div class="col-sm-12">
+                        <!-- Example Events -->
+                        <div class="example-wrap" id="exampleTableEvent">
+                            <!-- <h4 class="example-title">事件</h4> -->
+                            <div class="example">
+                                <!-- <div class="alert alert-success" id="examplebtTableEventsResult" role="alert">
+                                    事件结果
+                                </div> -->
+                                <div class="btn-group hidden-xs" id="exampleTableEventsToolbar" role="group">
+                                    <button type="button" class="btn btn-outline btn-default" title="查询">
+                                        <i class="glyphicon glyphicon-search" aria-hidden="true"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-outline btn-default" title="添加"  data-toggle="modal" data-target="#myModal5">
+                                        <i class="glyphicon glyphicon-plus" aria-hidden="true"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-outline btn-default" id="editUser" title="编辑"   data-target="#myModal1">
+                                        <i class="glyphicon glyphicon-edit" aria-hidden="true"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-outline btn-default" id="delete" title="删除" >
+                                        <i class="glyphicon glyphicon-trash" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                                <table style="table-layout:fixed;" id="exampleTableEvents" data-height="400" data-mobile-responsive="true">
+                                    <thead>
+                                        <tr>
+                                            <th data-field="state" data-checkbox="false"></th>
+                                            <th data-field="id" name="id" id="id">ID</th>
+                                            <th data-field="name" name="name" id="name">用户名</th>
+                                            <th data-field="type" name="type" id="type">用户角色</th>
+                                            <th data-field="typesymbol" name="typesymbol" id="typesymbol">类型</th>
+                                            <th data-field="workspace" name="workspace" id="workspace">名称</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                        </div>
+                        <!-- End Example Events -->
+                    </div>
+
+                    <div class="modal inmodal fade" id="myModal5" tabindex="-1" role="dialog"  aria-hidden="true">
+                                <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                            <h4 class="modal-title">添加用户</h4>
+                                            <small class="font-bold">添加新的用户
+                                        </div>
+                                        <div class="modal-body">
+                                            <form class="m-t m-t-2" role="form" id="submitNewUser">
+                                                <div class="btn-group form-group pull-left">
+                                                    <label for="name">账户类别</label>
+                                                        <select class="form-control" name="part" id="part">
+                                                            <option>超级管理员</option>
+                                                            <option>普通用户</option>
+                                                            <option>企业用户</option>
+                                                            <option>地区管理员</option>
+                                                            <option>部门管理员</option>
+                                                            <option>市直单位用户</option>
+                                                        </select>
+                                                </div>
+                                                    <div class="form-group" >
+                                                        <input type="text"  id="workspace" name="workspace" class="form-control" placeholder="请输入工作单位" required="">
+                                                    </div>
+                                                    <div class="form-group" >
+                                                        <input type="text" id="username" name="username" class="form-control" placeholder="请输入用户名" required="">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <input type="password" id="password" name="password" class="form-control" placeholder="请输入密码" required="">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <input type="password" id="repassword" name="repassword" class="form-control" placeholder="请再次输入密码" required="">
+                                                    </div>
+
+
+                                                   <!--  type：0 超级管理员   拥有最高权限
+                                                   type：1 普通用户     这个用户暂时没有任何权限
+                                                   type：2 企业用户     企业登录，查看本企业相关信息
+                                                   type：3 地区管理员   查看本地区所有相关信息
+                                                   type：4 部门管理员   管理所属部门的项目
+                                                   type：5 市直单位用户 市直单位考核 -->
+
+                                                </form>
+
+
+                                        </div>
+
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-white" data-dismiss="modal">关闭</button>
+                                            <button type="button" class="btn btn-primary" id="registersubmit"  data-dismiss="modal">添加</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="modal inmodal fade" id="myModal1" tabindex="-1" role="dialog"  aria-hidden="true">
+                                <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                            <h4 class="modal-title">编辑用户</h4>
+                                            <small class="font-bold">您可以在此页面编辑已经存在的用户
+                                        </div>
+                                        <div class="modal-body">
+                                            <form class="m-t m-t-2" role="form" id="submitNewUser">
+                                                <div class="btn-group form-group pull-left">
+                                                    <label for="name">账户类别</label>
+                                                        <select class="form-control" name="part" id="part1">
+                                                            <option>超级管理员</option>
+                                                            <option>普通用户</option>
+                                                            <option>企业用户</option>
+                                                            <option>地区管理员</option>
+                                                            <option>部门管理员</option>
+                                                            <option>市直单位用户</option>
+                                                        </select>
+                                                </div>
+                                                    <div class="form-group" >
+                                                        <input type="text"  id="workspace1" name="workspace" class="form-control" placeholder="请输入工作单位" required="">
+                                                    </div>
+                                                    <div class="form-group" >
+                                                        <input type="text" id="username1" name="username" class="form-control" placeholder="请输入用户名" required="">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <input type="password" id="password1" name="password" class="form-control" placeholder="请输入密码" required="">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <input type="password" id="repassword1" name="repassword" class="form-control" placeholder="请再次输入密码" required="">
+                                                    </div>
+
+
+                                                   <!--  type：0 超级管理员   拥有最高权限
+                                                   type：1 普通用户     这个用户暂时没有任何权限
+                                                   type：2 企业用户     企业登录，查看本企业相关信息
+                                                   type：3 地区管理员   查看本地区所有相关信息
+                                                   type：4 部门管理员   管理所属部门的项目
+                                                   type：5 市直单位用户 市直单位考核 -->
+
+                                                </form>
+
+
+                                        </div>
+
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-white" data-dismiss="modal">关闭</button>
+                                            <button type="button" class="btn btn-primary" id="editsubmit"  data-dismiss="modal">提交</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+    
+
+    <!-- 全局js -->
+    <script src="js/jquery.min.js?v=2.1.4"></script>
+    <script src="js/bootstrap.min.js?v=3.3.6"></script>
+    <script src="js/plugins/layer/layer.min.js"></script>
+
+    <!-- Bootstrap table -->
+    <script src="js/plugins/bootstrap-table/bootstrap-table.min.js"></script>
+    <script src="js/plugins/bootstrap-table/bootstrap-table-mobile.min.js"></script>
+    <script src="js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
+    <script type="text/javascript" src="./js/jquery-vilidate.js"></script>
+
+    <!-- Peity -->
+    <!-- <script src="js/demo/bootstrap-table-demo.js"></script> -->
+    <!-- 自定义js -->
+    <script src="js/content.js"></script>
+    <script src="js/comm.js"></script>
+    <!-- 欢迎信息 -->
+    <script src="js/welcome.js"></script>
+    <script type="text/javascript">
+    $().ready(function() {
+
+         $("#exampleTableEvents").bootstrapTable({
+            method: 'get', //是否显示行间隔色
+            striped: true, //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
+            cache: false, //是否显示分页（*）
+            pagination: true, //是否启用排序
+            sortName:'callBackRate',
+            sortable: true, //排序方式
+            sortOrder: "desc",//初始化加载第一页，默认第一页
+            /*pageList: [10, 15, 25, 50, 100],*/
+            //这个接口需要处理bootstrap table传递的固定参数,并返回特定格式的json数据
+            url: "http://localhost:5000/usermanage",
+            cache:false,//缓存
+            pagination:true,//分页
+            sidePagination:'client',//指定在前端客户端分页
+            pageNumber:1,//页号
+            pageSize:10,//页面数据条数
+            pageList:[10,20,30,40,50],//分页列表
+            toolbar:'#toolbar',//工具栏
+            showColumns:true,//显示选择列
+            showRefresh:true,//显示刷新按钮
+            showToggle:true,//显示切换视图：列表和详情视图切换
+            search:true,//显示搜索框
+            columns:[
+                {checkbox:true},
+                {field: '',align: 'center',
+                    formatter: function (value, row, index) {
+                                return index + 1;
+                    },title:'id'},
+                {field:'name',title:'用户名'},
+                {field:'type',title:'用户角色',align:'center',
+                    formatter:function(value,row,index){
+                        
+                        if(value == "0"){
+                            return '超级管理员';
+                        }else if(value == "1"){
+                            return '普通用户';
+                        }else if(value == "2"){
+                            return '企业用户';
+                        }else if(value == "3"){
+                            return '地区管理员';
+                        }else if(value == "4"){
+                            return '部门管理员';
+                        }else{
+                            return '市直单位用户';
+                        }
+                    }},
+                {field:'type',title:'类型',
+                    formatter:function(value,row,index){
+                        
+                        if(value == "0"){
+                            return '部门';
+                        }else if(value == "1"){
+                            return '普通用户';
+                        }else if(value == "2"){
+                            return '企业';
+                        }else if(value == "3"){
+                            return '地区';
+                        }else if(value == "4"){
+                            return '部门';
+                        }else{
+                            return '市直';
+                        }
+                    }
+                },
+            {field:'workspace',title:'名称'}
+            ]
+            ,
+            queryParams: function (params) {
+                    return {
+                        inDateFrom: $('#start').val(),
+            inDateTo: $('#end').val(),
+            type: $("#viewType").attr("viewType")
+                    };
+            },
+            strictSearch: true, //Enable the strict search.
+            responseHandler: function(data){
+                    return data.rows;
+            }
+        });
+
+         $("#delete").click(function(){
+            var _id = $(".selected").attr("id");
+            var id = sessionStorage.getItem('_id');
+            console.log(_id);
+            if ( _id == "" || _id == undefined) {
+                fail_prompt("请选择要删除的账号！");
+            }else if (_id == id) {
+                fail_prompt("不能删除已登录账号！");
+            }else{
+                $.ajax({
+                url: "http://localhost:5000/deleteUser",
+                type: "post",
+                data: {
+                    _id:_id
+                },
+                success: function (data) {
+                    //alert(data.msg);
+                    //重新加载记录
+                    //重新加载数据
+                    $("#exampleTableEvents").bootstrapTable('refresh', {url: 'http://localhost:5000/usermanage'});
+                }
+                });
+                success_prompt("删除成功！");
+            }
+            
+         })
+         /*function deleteUser(){
+            var _id = $(".selected").attr("id");
+            $.ajax({
+            url: "http://localhost:5000/deleteUser",
+            type: "post",
+            data: {
+                _id:_id
+            },
+            success: function (data) {
+                //alert(data.msg);
+                //重新加载记录
+                //重新加载数据
+                $("#exampleTableEvents").bootstrapTable('refresh', {url: 'http://localhost:5000/usermanage'});
+            }
+            });
+         }*/
+
+         
+
+        $("#registersubmit").click(function(){
+            $("#myModal5").validate({
+                debug: true, //调试模式取消submit的默认提交功能   
+                //errorClass: "label.error", //默认为错误的样式类为：error   
+                focusInvalid: false, //当为false时，验证无效时，没有焦点响应  
+                onkeyup: false,   
+                  
+                
+                rules:{
+                    part:{
+                        required:true
+                    },
+                    workspace:{
+                        required:true
+                    },
+                    username:{
+                        required:true
+                    },
+                    password:{
+                        required:true,
+                        rangelength:[3,10]
+                    },
+                    repassword:{
+                        required:true,
+                        equalTo:"#password"
+                    }                  
+                },
+                messages:{
+                    part:{
+                        required:"请选择类型角色"
+                    },
+                    workspace:{
+                        required:"必填"
+                    },
+                    username:{
+                        required:"必填"
+                    },
+                    password:{
+                        required:"必填",
+                        rangelength: "密码长度为3-10位由数字和字符组成的字符串"
+                    },
+                    repassword:{
+                        equalTo:"两次密码输入不一致"
+                    }                                 
+                }
+                  
+
+
+            }); 
+
+            //console.log("hwogih");
+            var type = $("#part").val();
+            var workspace = $("#workspace").val();
+            var name = $("#username").val();
+            var password = $("#password").val();
+            //console.log(name);
+            if(type == "超级管理员"){
+                type = "0";
+            }else if(type == "普通用户"){
+                type = "1";
+            }else if(type == "企业用户"){
+                type = "2";
+            }else if(type == "地区管理员"){
+                type = "3";
+            }else if(type == "部门管理员"){
+                type = "4";
+            }else if(type == "市直单位用户"){
+                type = "5";
+            }
+            var data = {
+                type:type,
+                workspace:workspace,
+                name:name,
+                password:password
+            }
+            //console.log(data);
+            $.ajax({
+                url:"http://localhost:5000/register",
+                method:"post",
+                data:data,
+                success:function(result){
+                //console.log(result);
+                if (result.errorCode == "200") {
+                    success_prompt("添加成功！");
+                    $("#exampleTableEvents").bootstrapTable('refresh', {url: 'http://localhost:5000/usermanage'});
+                }else if (result.errorCode == "404" || result.errorCode == "406") {
+                    fail_prompt("添加失败，请重新填写！")
+                }else if(result.errorCode == "405"){
+                    fail_prompt("用户名已存在，请重新填写！")
+                }
+            }});   
+        
+            });
+
+
+        $("#editUser").click(function(){
+            var _id = $(".selected").attr("id");
+            console.log(_id);
+            if (_id == undefined) {
+                fail_prompt("请选择要编辑的账号！");
+                $('#myModal1').modal({
+                    show: false,
+                    backdrop:'static'
+                })
+            }else{
+                $.ajax({
+                url: "http://localhost:5000/findUser",
+                type: "get",
+                data: {
+                    _id:_id
+                },
+                success: function (data) {
+                    var type  = data.data[0].type;
+                    if(type == "0"){
+                        type = "超级管理员";
+                    }else if(type == "1"){
+                        type = "普通用户";
+                    }else if(type == "2"){
+                        type = "企业用户";
+                    }else if(type == "3"){
+                        type = "地区管理员";
+                    }else if(type == "4"){
+                        type = "部门管理员";
+                    }else if(type == "5"){
+                        type = "市直单位用户";
+                    }
+                    console.log(type);
+                    $("#part1").val(type);
+                    $("#workspace1").val(data.data[0].workspace);
+                    $("#username1").val(data.data[0].name);
+                    $("#password1").val(data.data[0].password);
+                    $("#repassword1").val(data.data[0].password);
+                    $('#myModal1').modal({
+                    show: true,
+                    backdrop:'static'
+                    })
+                }
+                });
+
+            }
+            $("#editsubmit").click(function(){
+                $("#myModal1").validate({
+                debug: true, //调试模式取消submit的默认提交功能   
+                //errorClass: "label.error", //默认为错误的样式类为：error   
+                focusInvalid: false, //当为false时，验证无效时，没有焦点响应  
+                onkeyup: false,   
+                  
+                
+                rules:{
+                    part:{
+                        required:true
+                    },
+                    workspace:{
+                        required:true
+                    },
+                    username:{
+                        required:true
+                    },
+                    password:{
+                        required:true,
+                        rangelength:[3,10]
+                    },
+                    repassword:{
+                        required:true,
+                        equalTo:"#password"
+                    }                  
+                },
+                messages:{
+                    part:{
+                        required:"请选择类型角色"
+                    },
+                    workspace:{
+                        required:"必填"
+                    },
+                    username:{
+                        required:"必填"
+                    },
+                    password:{
+                        required:"必填",
+                        rangelength: "密码长度为3-10位由数字和字符组成的字符串"
+                    },
+                    repassword:{
+                        equalTo:"两次密码输入不一致"
+                    }                                 
+                }
+                  
+
+
+            }); 
+
+            //console.log("hwogih");
+            var type = $("#part1").val();
+            var workspace = $("#workspace1").val();
+            var name = $("#username1").val();
+            var password = $("#password1").val();
+            //console.log(name);
+            if(type == "超级管理员"){
+                type = "0";
+            }else if(type == "普通用户"){
+                type = "1";
+            }else if(type == "企业用户"){
+                type = "2";
+            }else if(type == "地区管理员"){
+                type = "3";
+            }else if(type == "部门管理员"){
+                type = "4";
+            }else if(type == "市直单位用户"){
+                type = "5";
+            }
+            var _id1 = $(".selected").attr("id");
+            var data = {
+                type:type,
+                workspace:workspace,
+                name:name,
+                password:password,
+                _id:_id1
+            }
+            console.log(data);
+            $.ajax({
+                url:"http://localhost:5000/updateUser",
+                method:"post",
+                data:data,
+                success:function(result){
+                //console.log(result);
+                if (result.errorCode == "200") {
+                    success_prompt("修改成功！");
+                    $("#exampleTableEvents").bootstrapTable('refresh', {url: 'http://localhost:5000/usermanage'});
+                }else if (result.errorCode == "404" || result.errorCode == "406") {
+                    fail_prompt("修改失败，请重新编辑！")
+                }else if(result.errorCode == "405"){
+                    fail_prompt("修改失败，请重新编辑！")
+                }
+            }
+            });
+            })
+             
+        
+            });
+     })
+
+    </script>
+</body>
+
+</html>

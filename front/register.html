@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <title>H+ 后台主题UI框架 - 注册</title>
+    <meta name="keywords" content="H+后台主题,后台bootstrap框架,会员中心主题,后台HTML,响应式后台">
+    <meta name="description" content="H+是一个完全响应式，基于Bootstrap3最新版本开发的扁平化主题，她采用了主流的左右两栏式布局，使用了Html5+CSS3等现代技术">
+
+    <link rel="shortcut icon" href="favicon.ico"> <link href="css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="css/font-awesome.css?v=4.4.0" rel="stylesheet">
+    <link href="css/plugins/iCheck/custom.css" rel="stylesheet">
+    <link href="css/animate.css" rel="stylesheet">
+    <link href="css/style.css?v=4.1.0" rel="stylesheet">
+    <script>if(window.top !== window.self){ window.top.location = window.location;}</script>
+
+</head>
+
+<body class="gray-bg">
+
+    <div class="middle-box text-center loginscreen   animated fadeInDown">
+        <div>
+            <div>
+
+                <h1 class="logo-name">H+</h1>
+
+            </div>
+            <h3>欢迎注册 H+</h3>
+            <p>创建一个H+新账户</p>
+            <form class="m-t" role="form" id="register" action="login.html">
+            <div class="btn-group form-group pull-left">
+                <label for="name">账户类别</label>
+                    <select class="form-control" name="part" id="part">
+                        <option>超级管理员</option>
+                        <option>普通用户</option>
+                        <option>企业用户</option>
+                        <option>地区管理员</option>
+                        <option>部门管理员</option>
+                        <option>市直单位用户</option>
+                    </select>
+            </div>
+                <div class="form-group" >
+                    <input type="text"  id="workspace" name="workspace" class="form-control" placeholder="请输入工作单位" required="">
+                </div>
+                <div class="form-group" >
+                    <input type="text" id="username" name="username" class="form-control" placeholder="请输入用户名" required="">
+                </div>
+                <div class="form-group">
+                    <input type="password" id="password" name="password" class="form-control" placeholder="请输入密码" required="">
+                </div>
+                <div class="form-group">
+                    <input type="password" id="repassword" name="repassword" class="form-control" placeholder="请再次输入密码" required="">
+                </div>
+                <div class="form-group text-left">
+                    <div class="checkbox i-checks">
+                        <label class="no-padding">
+                            <input type="checkbox" checked="checked" name="checkbox" id="checkbox"><i></i> 我同意注册协议</label>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary block full-width m-b" id="register-submit">注 册</button>
+
+                <p class="text-muted text-center"><small>已经有账户了？</small><a href="login.html">点此登录</a>
+                </p>
+
+               <!--  type：0 超级管理员   拥有最高权限
+               type：1 普通用户     这个用户暂时没有任何权限
+               type：2 企业用户     企业登录，查看本企业相关信息
+               type：3 地区管理员   查看本地区所有相关信息
+               type：4 部门管理员   管理所属部门的项目
+               type：5 市直单位用户 市直单位考核 -->
+
+            </form>
+        </div>
+    </div>
+
+    <!-- 全局js -->
+    <script src="js/jquery.min.js?v=2.1.4"></script>
+    <script src="js/bootstrap.min.js?v=3.3.6"></script>
+    <!-- iCheck -->
+    <script src="js/plugins/iCheck/icheck.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.i-checks').iCheck({
+                checkboxClass: 'icheckbox_square-green',
+                radioClass: 'iradio_square-green',
+            });
+        });
+    </script>
+
+    <script type="text/javascript" src="http://tajs.qq.com/stats?sId=9051096" charset="UTF-8"></script>
+    <script type="text/javascript" src="./js/jquery-vilidate.js"></script>
+    <!--统计代码，可删除-->
+    <script type="text/javascript">
+    $().ready(function() {
+        var validate = $("#register").validate({
+                debug: true, //调试模式取消submit的默认提交功能   
+                //errorClass: "label.error", //默认为错误的样式类为：error   
+                focusInvalid: false, //当为false时，验证无效时，没有焦点响应  
+                onkeyup: false,   
+                  
+                
+                rules:{
+                    part:{
+                        required:true
+                    },
+                    workspace:{
+                        required:true
+                    },
+                    username:{
+                        required:true
+                    },
+                    password:{
+                        required:true,
+                        rangelength:[3,10]
+                    },
+                    repassword:{
+                        required:true,
+                        equalTo:"#password"
+                    },
+                    checkbox:{
+                        required:true
+                    }                  
+                },
+                messages:{
+                    part:{
+                        required:"请选择类型角色"
+                    },
+                    workspace:{
+                        required:"必填"
+                    },
+                    username:{
+                        required:"必填"
+                    },
+                    password:{
+                        required:"必填",
+                        rangelength: "密码长度为3-10位由数字和字符组成的字符串"
+                    },
+                    repassword:{
+                        equalTo:"两次密码输入不一致"
+                    },
+                    checkbox:{
+                        required:"默认必选"
+                    }                                 
+                }
+                  
+
+
+            }); 
+
+        $("#register-submit").click(function(){
+            //console.log("hwogih");
+            var type = $("#part").val();
+            var workspace = $("#workspace").val();
+            var name = $("#username").val();
+            var password = $("#password").val();
+            //console.log(name);
+            if(type == "超级管理员"){
+                type = "0";
+            }else if(type == "普通用户"){
+                type = "1";
+            }else if(type == "企业用户"){
+                type = "2";
+            }else if(type == "地区管理员"){
+                type = "3";
+            }else if(type == "部门管理员"){
+                type = "4";
+            }else if(type == "市直单位用户"){
+                type = "5";
+            }
+            var data = {
+                type:type,
+                workspace:workspace,
+                name:name,
+                password:password
+            }
+            //console.log(data);
+            $.ajax({
+                url:"http://localhost:5000/register",
+                method:"post",
+                data:data,
+                success:function(result){
+                //console.log(result);
+                if (result.errorCode == "200") {
+                    alert("注册成功")
+                    window.location.href="login.html"; 
+                }else if (result.errorCode == "404" || result.errorCode == "406") {
+                    alert("注册失败，请重新填写")
+                }else if(result.errorCode == "405"){
+                    alert("用户名已存在，请重新填写")
+                }
+            }});   
+        
+            });
+        })
+
+        
+        
+    
+    
+    </script>
+</body>
+
+</html>

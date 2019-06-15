@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--360浏览器优先以webkit内核解析-->
+
+
+    <title>H+ 后台主题UI框架 - 主页示例</title>
+
+    <link rel="shortcut icon" href="favicon.ico"> <link href="css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="css/font-awesome.css?v=4.4.0" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/plugins/bootstrap-table/bootstrap-table.min.css">
+    <link href="css/animate.css" rel="stylesheet">
+    <link href="css/style.css?v=4.1.0" rel="stylesheet">
+    
+
+</head>
+
+<body class="gray-bg">
+    
+
+    <div class="col-sm-12">
+                        <!-- Example Events -->
+                        <div class="example-wrap" id="exampleTableEvent">
+                            <!-- <h4 class="example-title">事件</h4> -->
+                            <div class="example">
+                                <!-- <div class="alert alert-success" id="examplebtTableEventsResult" role="alert">
+                                    事件结果
+                                </div> -->
+                                <div class="btn-group hidden-xs" id="exampleTableEventsToolbar" role="group">
+                                    <button type="button" class="btn btn-outline btn-default" title="查询">
+                                        <i class="glyphicon glyphicon-search" aria-hidden="true"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-outline btn-default" title="添加"  data-toggle="modal" data-target="#myModal5">
+                                        <i class="glyphicon glyphicon-plus" aria-hidden="true"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-outline btn-default" id="projectinf" title="项目详情"   data-target="#myModal2">
+                                        <i class="glyphicon glyphicon-leaf" aria-hidden="true"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-outline btn-default" id="editUser" title="编辑"   data-target="#myModal1">
+                                        <i class="glyphicon glyphicon-edit" aria-hidden="true"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-outline btn-default" id="delete" title="删除" >
+                                        <i class="glyphicon glyphicon-trash" aria-hidden="true"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-outline btn-default" id="output" title="导出">
+                                        <i class="glyphicon glyphicon-log-out" aria-hidden="true"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-outline btn-default" id="upload" title="上传">
+                                        <i class="glyphicon glyphicon-open" aria-hidden="true"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-outline btn-default" id="download" title="下载">
+                                        <i class="glyphicon glyphicon-save" aria-hidden="true"></i>
+                                    </button>
+                                    
+                                </div>
+                                <table style="table-layout:fixed !important;" id="prejectsTableEvents" data-height="400" data-mobile-responsive="true">
+                                    <thead>
+                                        <tr>
+                                            <th data-field="state" data-checkbox="false"></th>
+                                            <th data-field="id" name="id" id="id">ID</th>
+                                            <th data-field="projectTitle" name="projectTitle" id="projectTitle">项目名称</th>
+                                            <th data-field="projecttime" name="projecttime" id="projecttime">开始时间</th>
+                                            <th data-field="projecttime1" name="projecttime1" id="projecttime1">结束时间</th>
+                                            <th data-field="apip" name="apip" id="apip">年度项目实施计划</th>
+                                            <th data-field="progress" name="progress" id="progress">项目实施进度</th>
+                                            <th data-field="annualPlan" name="annualPlan" id="annualPlan">年度投资计划）</th>
+                                            <th data-field="planed" name="planed" id="planed">已完成投资</th>
+                                            <th data-field="primalproblem" name="primalproblem" id="primalproblem">主要问题</th>
+                                            <th data-field="solvedproblem" name="solvedproblem" id="solvedproblem">问题解决</th>
+                                            <th data-field="finish" name="finish" id="finish">问题解决</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                        </div>
+                        <!-- End Example Events -->
+                    </div>
+
+                    <div class="modal inmodal fade" id="myModal5" tabindex="-1" role="dialog"  aria-hidden="true">
+                                <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                            <h4 class="modal-title">创建项目</h4>
+                                            <small class="font-bold">创建新的项目
+                                        </div>
+                                        <div class="modal-body">
+                                            <form class="m-t m-t-2" role="form" id="submitNewUser">
+                                                <div class="form-group" >
+                                                        <input type="text"  id="projectTitle" name="projectTitle" class="form-control" placeholder="请输入项目名称" required="">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-3 control-label" style="font-size: 15px;">开始时间：</label>
+                                                    <div class="col-sm-7">
+                                                        <input readonly class="form-control layer-date" id="projecttime" name="projecttime">
+                                                        <label class="laydate-icon inline demoicon" onclick="laydate({elem: '#projecttime'});"></label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-3 control-label" style="font-size: 15px;">结束时间：</label>
+                                                    <div class="col-sm-7">
+                                                        <input readonly class="form-control layer-date" id="projecttime2" name="projecttime2">
+                                                        <label class="laydate-icon inline demoicon" onclick="laydate({elem: '#projecttime2'});"></label>
+                                                    </div>
+                                                </div>
+                                                    <div class="form-group" >
+                                                        <input type="text"  id="projectcontacts" name="projectcontacts" class="form-control" placeholder="请输入项目联系人姓名" required="">
+                                                    </div>
+                                                    <div class="form-group" >
+                                                        <input type="text"  id="phonenumber" name="phonenumber" class="form-control" placeholder="请输入联系方式" required="">
+                                                    </div>
+                                                    <div class="form-group" >
+                                                        <input type="text"  id="apip" name="apip" class="form-control" placeholder="请输入年度项目实施计划" required="">
+                                                    </div>
+                                                    <div class="form-group" >
+                                                        <input type="text"  id="progress" name="progress" class="form-control" placeholder="请输入项目实施进度" required="">
+                                                    </div>
+                                                    <div class="form-group" >
+                                                        <input type="text"  id="annualPlan" name="annualPlan" class="form-control" placeholder="请输入年度投资计划" required="">
+                                                    </div>
+                                                    <div class="form-group" >
+                                                        <input type="text"  id="planed" name="planed" class="form-control" placeholder="请输入已完成投资额" required="">
+                                                    </div>
+                                                    <div class="form-group" >
+                                                        <input type="text" id="primalproblem" name="primalproblem" class="form-control" placeholder="请输入主要问题" required="">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <input type="text" id="solvedproblem" name="solvedproblem" class="form-control" placeholder="请输入问题解决情况" required="">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <input type="text" id="projectfrom" name="projectfrom" class="form-control" placeholder="请输入项目发起单位" required="">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <input type="text" id="projectto" name="projectto" class="form-control" placeholder="请输入项目审批部门" required="">
+                                                    </div>
+
+                                                    
+
+
+
+                                                   <!--  type：0 超级管理员   拥有最高权限
+                                                   type：1 普通用户     这个用户暂时没有任何权限
+                                                   type：2 企业用户     企业登录，查看本企业相关信息
+                                                   type：3 地区管理员   查看本地区所有相关信息
+                                                   type：4 部门管理员   管理所属部门的项目
+                                                   type：5 市直单位用户 市直单位考核 -->
+
+                                                </form>
+
+
+                                        </div>
+
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-white" data-dismiss="modal">关闭</button>
+                                            <button type="button" class="btn btn-primary" id="registersubmit"  data-dismiss="modal">添加</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="modal inmodal fade" id="myModal1" tabindex="-1" role="dialog"  aria-hidden="true">
+                                <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                            <h4 class="modal-title">编辑用户</h4>
+                                            <small class="font-bold">您可以在此页面编辑已经存在的用户
+                                        </div>
+                                        <div class="modal-body">
+                                            <form class="m-t m-t-2" role="form" id="submitNewUser">
+                                                <div class="form-group" >
+                                                        <input type="text"  id="projectTitle1" name="projectTitle" class="form-control" placeholder="请输入项目名称" required="">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-3 control-label" style="font-size: 15px;">进度时间：</label>
+                                                    <div class="col-sm-7">
+                                                        <input readonly class="form-control layer-date" id="projecttime1" name="projecttime">
+                                                        <label class="laydate-icon inline demoicon" onclick="laydate({elem:'#projecttime1'});"></label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-3 control-label" style="font-size: 15px;">结束时间：</label>
+                                                    <div class="col-sm-7">
+                                                        <input readonly class="form-control layer-date" id="projecttime3" name="projecttime3">
+                                                        <label class="laydate-icon inline demoicon" onclick="laydate({elem: '#projecttime3'});"></label>
+                                                    </div>
+                                                </div>
+                                                <div class="btn-group form-group pull-left">
+                                                    <label for="name">账户类别</label>
+                                                        <select class="form-control" name="part" id="part1">
+                                                            <option>超级管理员</option>
+                                                            <option>普通用户</option>
+                                                            <option>企业用户</option>
+                                                            <option>地区管理员</option>
+                                                            <option>部门管理员</option>
+                                                            <option>市直单位用户</option>
+                                                        </select>
+                                                </div>
+                                                    <div class="form-group" >
+                                                        <input type="text"  id="projectcontacts1" name="projectcontacts1" class="form-control" placeholder="请输入项目联系人姓名" required="">
+                                                    </div>
+                                                    <div class="form-group" >
+                                                        <input type="text"  id="phonenumber1" name="phonenumber1" class="form-control" placeholder="请输入联系方式" required="">
+                                                    </div>
+                                                    <div class="form-group" >
+                                                        <input type="text"  id="apip1" name="apip" class="form-control" placeholder="请输入年度项目实施计划" required="">
+                                                    </div>
+                                                    <div class="form-group" >
+                                                        <input type="text"  id="progress1" name="progress" class="form-control" placeholder="请输入项目实施进度" required="">
+                                                    </div>
+                                                    <div class="form-group" >
+                                                        <input type="text"  id="annualPlan1" name="annualPlan" class="form-control" placeholder="请输入年度投资计划" required="">
+                                                    </div>
+                                                    <div class="form-group" >
+                                                        <input type="text"  id="planed1" name="planed" class="form-control" placeholder="请输入已完成投资额" required="">
+                                                    </div>
+                                                    <div class="form-group" >
+                                                        <input type="text" id="primalproblem1" name="primalproblem" class="form-control" placeholder="请输入主要问题" required="">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <input type="text" id="solvedproblem1" name="solvedproblem" class="form-control" placeholder="请输入问题解决情况" required="">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <input type="text" id="projectfrom1" name="projectfrom" class="form-control" placeholder="请输入项目发起单位" required="">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <input type="text" id="projectto1" name="projectto" class="form-control" placeholder="请输入项目审批部门" required="">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <input type="text" id="finish1" name="finish" class="form-control" placeholder="请输入项目进度" required="">
+                                                    </div>
+                                                    
+
+
+
+                                                   <!--  type：0 超级管理员   拥有最高权限
+                                                   type：1 普通用户     这个用户暂时没有任何权限
+                                                   type：2 企业用户     企业登录，查看本企业相关信息
+                                                   type：3 地区管理员   查看本地区所有相关信息
+                                                   type：4 部门管理员   管理所属部门的项目
+                                                   type：5 市直单位用户 市直单位考核 -->
+
+                                                </form>
+
+
+                                        </div>
+
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-white" data-dismiss="modal">关闭</button>
+                                            <button type="button" class="btn btn-primary" id="editsubmit"  data-dismiss="modal">提交</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="modal inmodal fade" id="myModal3" tabindex="-1" role="dialog"  aria-hidden="true">
+                                <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                            <h4 class="modal-title">上传项目文件</h4>
+                                            <small class="font-bold">上传项目相关文件
+                                        </div>
+                                        <div class="modal-body">
+                                                <form  class="m-t m-t-2" role="form" id="submitfile" action="http://localhost:5000/upload" method="post" enctype="multipart/form-data">
+                                                    <input type="file" name="image" size="50" />
+                                                    <br />
+                                                    <input type="submit" value="上传文件" />
+                                                </form>
+                                        </div>
+
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-white" data-dismiss="modal">关闭</button>
+                                            <button type="button" class="btn btn-primary" id="ulfile"  data-dismiss="modal">上传</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="modal inmodal fade" id="myModal2" tabindex="-1" role="dialog"  aria-hidden="true">
+                                <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                            <h4 class="modal-title">项目详情</h4>
+                                            <small class="font-bold">您可以在此页面查看项目详情
+                                        </div>
+                                        <div class="modal-body">
+                                            <table style="table-layout:fixed !important;" id="prejectsinfoTableEvents" data-height="400" data-mobile-responsive="true">
+                                                <thead>
+                                                    <tr>
+                                                        <th data-field="state" data-checkbox="false"></th>
+                                                        <th data-field="id" name="id" id="id">ID</th>
+                                                        <th data-field="time" name="time" id="time">进度时间</th>
+                                                        <th data-field="planing" name="planing" id="planing">年度项目实施计划</th>
+                                                        <th data-field="jingdu" name="jingdu" id="jingdu">项目实施进展</th>
+                                                        <th data-field="annualPlan" name="annualPlan" id="annualPlan">年度投资计划</th>
+                                                        <th data-field="planed" name="planed" id="planed">已完成投资</th>
+                                                        <th data-field="mainproblem" name="mainproblem" id="mainproblem">主要问题</th>
+                                                        <th data-field="solveproblem" name="solveproblem" id="solveproblem">问题解决</th>
+                                                    </tr>
+                                                </thead>
+                                            </table>
+    
+
+                                        </div>
+
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-white" data-dismiss="modal">关闭</button>
+                                            <button type="button" class="btn btn-primary" id="editsubmit"  data-dismiss="modal">提交</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+    
+
+    <!-- 全局js -->
+    <script src="js/jquery.min.js?v=2.1.4"></script>
+    <script src="js/bootstrap.min.js?v=3.3.6"></script>
+    <script src="js/plugins/layer/layer.min.js"></script>
+
+    <!-- Bootstrap table -->
+    <script src="js/plugins/bootstrap-table/bootstrap-table.min.js"></script>
+    <!-- <script src="js/plugins/bootstrap-table/bootstrap-table-mobile.min.js"></script> -->
+    <script src="js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
+    <script type="text/javascript" src="./js/jquery-vilidate.js"></script>
+
+    <!-- layerDate plugin javascript -->
+    <script src="js/plugins/layer/laydate/laydate.js"></script>
+    <script type="text/javascript" src="js/jquery.table2excel.js"></script>
+
+    <!-- Peity -->
+    <!-- <script src="js/demo/bootstrap-table-demo.js"></script> -->
+    <!-- 自定义js -->
+    <script src="js/content.js"></script>
+    <script src="js/comm.js"></script>
+    <!-- 欢迎信息 -->
+    <script src="js/welcome.js"></script>
+    <script type="text/javascript">
+    $().ready(function() {
+
+        /*timepicker*/
+        laydate({
+            elem: '#projecttime', //目标元素。由于laydate.js封装了一个轻量级的选择器引擎，因此elem还允许你传入class、tag但必须按照这种方式 '#id .class'
+            event: 'focus' //响应事件。如果没有传入event，则按照默认的click
+        });
+
+        laydate({
+            elem: '#projecttime1', //目标元素。由于laydate.js封装了一个轻量级的选择器引擎，因此elem还允许你传入class、tag但必须按照这种方式 '#id .class'
+            event: 'focus' //响应事件。如果没有传入event，则按照默认的click
+        });
+
+        /*laydate({
+            elem: '#projecttime2', //目标元素。由于laydate.js封装了一个轻量级的选择器引擎，因此elem还允许你传入class、tag但必须按照这种方式 '#id .class'
+            event: 'focus' //响应事件。如果没有传入event，则按照默认的click
+        });
+
+        laydate({
+            elem: '#projecttime4', //目标元素。由于laydate.js封装了一个轻量级的选择器引擎，因此elem还允许你传入class、tag但必须按照这种方式 '#id .class'
+            event: 'focus' //响应事件。如果没有传入event，则按照默认的click
+        });*/
+        var workspace = sessionStorage.getItem('workspace');
+        var type = sessionStorage.getItem('type');
+        if (type == "0") {
+            var url = "http://localhost:5000/projectsmanage";
+        }else{
+            var url = "http://localhost:5000/projectsmanage?workspace="+workspace;
+        }
+        
+         $("#prejectsTableEvents").bootstrapTable({
+            method: 'get', //是否显示行间隔色
+            striped: true, //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
+            cache: false, //是否显示分页（*）
+            pagination: true, //是否启用排序
+            sortName:'callBackRate',
+            sortable: true, //排序方式
+            sortOrder: "desc",//初始化加载第一页，默认第一页
+            /*pageList: [10, 15, 25, 50, 100],*/
+            //这个接口需要处理bootstrap table传递的固定参数,并返回特定格式的json数据
+            url: url,
+            cache:false,//缓存
+            pagination:true,//分页
+            sidePagination:'client',//指定在前端客户端分页
+            pageNumber:1,//页号
+            pageSize:10,//页面数据条数
+            pageList:[10,20,30,40,50],//分页列表
+            toolbar:'#toolbar',//工具栏
+            showColumns:true,//显示选择列
+            showRefresh:true,//显示刷新按钮
+            showToggle:true,//显示切换视图：列表和详情视图切换
+            search:true,//显示搜索框
+            columns:[
+                {checkbox:true},
+                {field: '',align: 'center',
+                    formatter: function (value, row, index) {
+                                return index + 1;
+                    },title:'id',width:"10%"},
+                {field:'projectTitle',title:'项目名称',width:"8%"},
+                {field:'projecttime',title:'开始时间',width:"8%"},
+                {field:'projecttime1',title:'结束时间',width:"8%"},
+                {field:'apip',title:'年度项目实施计划',width:"8%"},
+                {field:'progress',title:'项目实施进度',width:"8%"},
+                {field:'annualPlan',title:'年度投资计划（万）',width:"10%"},
+                {field:'planed',title:'已完成投资（万）',width:"10%"},
+                {field:'primalproblem',title:'主要问题',width:"8%"},
+                {field:'solvedproblem',title:'问题解决',width:"8%"},
+                {field:'finish',title:'进度',align:'center',width:"8%",
+                    formatter:function(value,row,index){
+                        if(value[ value.length - 1 ] == "%"){
+
+                             value = parseFloat(value)/100 ;   
+
+                        }
+                        if(value == "0"){
+                            return '未开始';
+                        }else if(value == "1"){
+                            return '已完成';
+                        }else if(value > "1" || value < "0"){
+                            return '已取消';
+                        }else{
+                            return '进行中';
+                        }
+                    }},
+                {field:'type',title:'用户角色',align:'center',width:"8%",
+                    formatter:function(value,row,index){
+                        
+                        if(value == "0"){
+                            return '超级管理员';
+                        }else if(value == "1"){
+                            return '普通用户';
+                        }else if(value == "2"){
+                            return '企业用户';
+                        }else if(value == "3"){
+                            return '地区管理员';
+                        }else if(value == "4"){
+                            return '部门管理员';
+                        }else{
+                            return '市直单位用户';
+                        }
+                    }}
+            ]
+            ,
+            queryParams: function (params) {
+                    return {
+                        inDateFrom: $('#start').val(),
+            inDateTo: $('#end').val(),
+            type: $("#viewType").attr("viewType")
+                    };
+            },
+            strictSearch: true, //Enable the strict search.
+            responseHandler: function(data){
+                    return data.rows;
+            }
+        });
+
+         $("#delete").click(function(){
+            var _id = $(".selected").attr("id");
+            //var id = sessionStorage.getItem('_id');
+            //console.log(_id);
+            if ( _id == "" || _id == undefined) {
+                fail_prompt("请选择要删除的项目！");
+            }else{
+                $.ajax({
+                url: "http://localhost:5000/deleteProject",
+                type: "post",
+                data: {
+                    _id:_id
+                },
+                beforeSend:function(){
+                    $("#loading").fadeIn(200);
+                },
+                success: function (data) {
+                    $("#loading").fadeOut(200);
+                    //alert(data.msg);
+                    //重新加载记录
+                    //重新加载数据
+                    $("#prejectsTableEvents").bootstrapTable('refresh', {url: url});
+                }
+                });
+                success_prompt("删除成功！");
+            }
+            
+         })
+         
+
+         
+
+        $("#registersubmit").click(function(){
+            $("#myModal5").validate({
+                debug: true, //调试模式取消submit的默认提交功能   
+                //errorClass: "label.error", //默认为错误的样式类为：error   
+                focusInvalid: false, //当为false时，验证无效时，没有焦点响应  
+                onkeyup: false,   
+                  
+                
+                rules:{
+                    part:{
+                        required:true
+                    },
+                    workspace:{
+                        required:true
+                    },
+                    username:{
+                        required:true
+                    },
+                    password:{
+                        required:true,
+                        rangelength:[3,10]
+                    },
+                    repassword:{
+                        required:true,
+                        equalTo:"#password"
+                    }                  
+                },
+                messages:{
+                    part:{
+                        required:"请选择类型角色"
+                    },
+                    workspace:{
+                        required:"必填"
+                    },
+                    username:{
+                        required:"必填"
+                    },
+                    password:{
+                        required:"必填",
+                        rangelength: "密码长度为3-10位由数字和字符组成的字符串"
+                    },
+                    repassword:{
+                        equalTo:"两次密码输入不一致"
+                    }                                 
+                }
+                  
+
+
+            }); 
+
+            //console.log("hwogih");
+            var _id = sessionStorage.getItem('_id');
+            var projectTitle = $("#projectTitle").val();
+            var projectcontacts = $("#projectcontacts").val();
+            var phonenumber = $("#phonenumber").val();
+            var projecttime = $("#projecttime").val();
+            var projecttime2 = $("#projecttime2").val();
+            var apip = $("#apip").val();
+            var progress = $("#progress").val();
+            var annualPlan = $("#annualPlan").val();
+            var planed = $("#planed").val();
+            var primalproblem = $("#primalproblem").val();
+            var solvedproblem = $("#solvedproblem").val();
+            var projectfrom = $("#projectfrom").val();
+            var projectto = $("#projectto").val();
+            
+
+            var type = sessionStorage.getItem('type');
+            
+            var data = {
+                id:_id,
+                projectTitle : projectTitle,
+                projecttime : projecttime,
+                projecttime1 : projecttime2,
+                projectcontacts:projectcontacts,
+                phonenumber:phonenumber,
+                apip : apip,
+                progress : progress,
+                annualPlan : annualPlan,
+                planed : planed,
+                primalproblem : primalproblem,
+                solvedproblem : solvedproblem,
+                from : projectfrom,
+                to : projectto,
+                type : type,
+                finish : "0%"
+            }
+            //console.log(data);
+            $.ajax({
+                url:"http://localhost:5000/addProject",
+                method:"post",
+                data:data,
+                success:function(result){
+                //console.log(result);
+                if (result.errorCode == "200") {
+                    success_prompt("添加成功！");
+                    $("#prejectsTableEvents").bootstrapTable('refresh', {url: url});
+                }else if (result.errorCode == "404" || result.errorCode == "406") {
+                    fail_prompt("添加失败，请重新填写！")
+                }else if(result.errorCode == "405"){
+                    fail_prompt("用户名已存在，请重新填写！")
+                }
+            }});   
+        
+            });
+
+
+        $("#editUser").click(function(){
+            var _id = $(".selected").attr("id");
+            var msg = $(".selected").children().eq(11).text();
+            console.log(_id);
+            if (_id == undefined) {
+                fail_prompt("请选择要编辑的项目！");
+                $('#myModal1').modal({
+                    show: false,
+                    backdrop:'static'
+                })
+            }else if(msg != "进行中" && msg != "未开始"){
+                fail_prompt("项目已取消或已完成,请重新选择！");
+                $('#myModal1').modal({
+                    show: false,
+                    backdrop:'static'
+                })
+            }else{
+                $.ajax({
+                url: "http://localhost:5000/findProject",
+                type: "get",
+                data: {
+                    _id:_id
+                },
+                success: function (data) {
+                    var type  = data.data[0].type;
+                    if(type == "0"){
+                        type = "超级管理员";
+                    }else if(type == "1"){
+                        type = "普通用户";
+                    }else if(type == "2"){
+                        type = "企业用户";
+                    }else if(type == "3"){
+                        type = "地区管理员";
+                    }else if(type == "4"){
+                        type = "部门管理员";
+                    }else if(type == "5"){
+                        type = "市直单位用户";
+                    }
+                    //console.log(type);
+                    $("#projectTitle1").val(data.data[0].projectTitle);
+                    $("#projecttime1").val(data.data[0].projecttime);
+                    $("#projecttime3").val(data.data[0].projecttime1);
+                    $("#phonenumber1").val(data.data[0].phonenumber);
+                    $("#projectcontacts1").val(data.data[0].projectcontacts);
+                    $("#apip1").val(data.data[0].apip);
+                    $("#progress1").val(data.data[0].progress);
+                    $("#annualPlan1").val(data.data[0].annualPlan);
+                    $("#planed1").val(data.data[0].planed);
+                    $("#primalproblem1").val(data.data[0].primalproblem);
+                    $("#solvedproblem1").val(data.data[0].solvedproblem);
+                    $("#projectfrom1").val(data.data[0].from);
+                    $("#projectto1").val(data.data[0].to);
+                    $("#finish1").val(data.data[0].finish);
+                    $("#part1").val(type);
+                    $('#myModal1').modal({
+                    show: true,
+                    backdrop:'static'
+                    })
+                }
+                });
+
+            }
+            $("#editsubmit").click(function(){
+            var type = sessionStorage.getItem('type');
+            //console.log("hwogih");
+            var projectTitle = $("#projectTitle1").val();
+            var projecttime = $("#projecttime1").val();
+            var projecttime1 = $("#projecttime3").val();
+            var projectcontacts1 = $("#projectcontacts1").val();
+            var phonenumber1 = $("#phonenumber1").val();
+            var apip = $("#apip1").val();
+            var progress = $("#progress1").val();
+            var annualPlan = $("#annualPlan1").val();
+            var planed = $("#planed1").val();
+            var primalproblem = $("#primalproblem1").val();
+            var solvedproblem = $("#solvedproblem1").val();
+            var projectfrom = $("#projectfrom1").val();
+            var projectto = $("#projectto1").val();
+            var finish = $("#finish1").val();
+            var _id1 = $(".selected").attr("id");
+            
+
+            var data = {
+                projectTitle : projectTitle,
+                projecttime : projecttime,
+                projecttime1 : projecttime1,
+                projectcontacts:projectcontacts1,
+                phonenumber:phonenumber1,
+                apip : apip,
+                progress : progress,
+                annualPlan : annualPlan,
+                planed : planed,
+                primalproblem : primalproblem,
+                solvedproblem : solvedproblem,
+                from : projectfrom,
+                to : projectto,
+                type : type,
+                finish : finish,
+                _id:_id1
+                }
+                //console.log(data);
+                $.ajax({
+                    url:"http://localhost:5000/updateProject",
+                    method:"post",
+                    data:data,
+                    success:function(result){
+                    //console.log(result);
+                    if (result.errorCode == "200") {
+                        success_prompt("修改成功！");
+                        $("#prejectsTableEvents").bootstrapTable('refresh', {url: url});
+                    }else if (result.errorCode == "404" || result.errorCode == "406") {
+                        fail_prompt("修改失败，请重新编辑！")
+                    }else if(result.errorCode == "405"){
+                        fail_prompt("修改失败，请重新编辑！")
+                    }
+                }
+                });
+            
+            })
+             
+        
+            });
+        $("#upload").click(function(){
+            var _id = $(".selected").attr("id");
+            if (_id == undefined) {
+                fail_prompt("请选择要查看的项目！");
+                $('#myModal3').modal({
+                    show: false,
+                    backdrop:'static'
+                })
+            }else{
+                var url = "http://localhost:5000/upload?id="+_id;
+                $('#myModal3').modal({
+                    show: true,
+                    backdrop:'static'
+                })
+                $("#ulfile").click(function(){
+                    /*$.ajax({
+                        url:url,
+                        method:"get",
+                        data:"",
+                        success:function(result){
+                        console.log(result);
+                        
+                    }
+                    });*/
+                    console.log(_id);
+                    var myform = new FormData();
+
+            myform.append('file', $('#submitfile')[0]);
+
+            myform.append('id',_id);
+
+
+            
+
+                    $.ajax({
+                        url: "http://localhost:5000/upload?id="+_id,
+                        type: 'POST',
+                        cache: false,
+                        data: myform/*new FormData($('#submitfile')[0])*/,
+                        processData: false,
+                        contentType: false,
+                        dataType:"json",
+                        beforeSend: function(){
+                            //uploading = true;
+                        },
+                        success : function(data) {
+                            /*if (data.code == 1) {
+                                $("#logo").attr("src", data.msg);
+                            } else {
+                                showError(data.msg);
+                            }
+                            uploading = false;*/
+                            console.log(data);
+                        }
+                    });
+                })
+                
+            }
+        })
+
+
+        $("#projectinf").click(function(){
+            var _id = $(".selected").attr("id");
+            if (_id == undefined) {
+                fail_prompt("请选择要查看的项目！");
+                $('#myModal2').modal({
+                    show: false,
+                    backdrop:'static'
+                })
+            }else{
+                var url = "http://localhost:5000/projectInfo?id="+_id;
+                $('#myModal2').modal({
+                    show: true,
+                    backdrop:'static'
+                })
+                $("#prejectsinfoTableEvents").bootstrapTable('refresh', {url: url});
+                $("#prejectsinfoTableEvents").bootstrapTable({
+                    method: 'get', //是否显示行间隔色
+                    striped: true, //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
+                    cache: false, //是否显示分页（*）
+                    pagination: true, //是否启用排序
+                    sortName:'callBackRate',
+                    sortable: true, //排序方式
+                    sortOrder: "desc",//初始化加载第一页，默认第一页
+                    /*pageList: [10, 15, 25, 50, 100],*/
+                    //这个接口需要处理bootstrap table传递的固定参数,并返回特定格式的json数据
+                    url: url,
+                    cache:false,//缓存
+                    pagination:true,//分页
+                    sidePagination:'client',//指定在前端客户端分页
+                    pageNumber:1,//页号
+                    pageSize:10,//页面数据条数
+                    pageList:[10,20,30,40,50],//分页列表
+                    toolbar:'#toolbar',//工具栏
+                    showColumns:true,//显示选择列
+                    showRefresh:true,//显示刷新按钮
+                    showToggle:true,//显示切换视图：列表和详情视图切换
+                    search:true,//显示搜索框
+                    columns:[
+                        {checkbox:true},
+                        {field: '',align: 'center',
+                            formatter: function (value, row, index) {
+                                        return index + 1;
+                            },title:'id',width:"10%"},
+                        {field:'time',title:'进度时间',width:"8%"},
+                        {field:'planing',title:'年度项目实施计划',width:"8%"},
+                        {field:'jingdu',title:'项目实施进展',width:"8%"},
+                        {field:'annualPlan',title:'年度投资计划（万）',width:"10%"},
+                        {field:'planed',title:'已完成投资（万）',width:"10%"},
+                        {field:'mainproblem',title:'主要问题',width:"8%"},
+                        {field:'solveproblem',title:'问题解决',width:"8%"}
+                    ]
+                    ,
+                    queryParams: function (params) {
+                            return {
+                                inDateFrom: $('#start').val(),
+                    inDateTo: $('#end').val(),
+                    type: $("#viewType").attr("viewType")
+                            };
+                    },
+                    strictSearch: true, //Enable the strict search.
+                    responseHandler: function(data){
+                            return data.rows;
+                    }
+        });
+            }
+        })
+
+        $("#output").click(function(filename){
+            $("#prejectsTableEvents").table2excel({
+                exclude: ".noExl",//class="noExl"的列不导出
+                name: "Excel Document Name",
+                filename: "表格数据",//文件名称
+                fileext: ".xlsx",//文件后缀名
+                exclude_img: true,//导出图片
+                exclude_links: true,//导出超链接
+                exclude_inputs: true//导出输入框内容
+            });
+        })
+
+
+     })
+
+    </script>
+</body>
+
+</html>
